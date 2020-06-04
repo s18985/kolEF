@@ -21,7 +21,7 @@ namespace kolEF.DAL
 
         public AddOrderResponse AddOrder(int id, AddOrderRequest request)
         {
-           var wyrob = _context.WyrobCukierniczy.Where(x => x.Nazwa == request.Wyroby_Wyrob).FirstOrDefault();
+           var wyrob = _context.WyrobCukierniczy.Where(x => x.Nazwa == request.Wyrob.Wyrob).FirstOrDefault();
 
             if (wyrob == null)
             {
@@ -42,8 +42,8 @@ namespace kolEF.DAL
                 {
                     IdWyrobuCukierniczego = wyrob.IdWyrobuCukierniczego,
                     Zamowienie = order,
-                    Ilosc = request.Ilosc,
-                    Uwagi = request.WyrobUwagi
+                    Ilosc = request.Wyrob.Ilosc,
+                    Uwagi = request.Wyrob.Uwagi
 
                 });
 
@@ -51,8 +51,8 @@ namespace kolEF.DAL
                 {
                     Zamowienie = order,
                     NazwaWyrobu = wyrob.Nazwa,
-                    Ilosc = request.Ilosc,
-                    Uwagi = request.WyrobUwagi
+                    Ilosc = request.Wyrob.Ilosc,
+                    Uwagi = request.Wyrob.Uwagi
 
                 };
 

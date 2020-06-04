@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace kolEF.DTOs.Requests
 {
-    public class AddOrderRequest
+    public class Wyroby
     {
         [Required]
-        public DateTime DataPrzyjecia { get; set; }
-        public DateTime DataRealizacji { get; set; }
-        public string Uwagi { get; set; }
+        public string Wyrob { get; set; }
 
         [Required]
-        public Wyroby Wyrob { get; set; }
-
-
+        public int Ilosc { get; set; }
+        public string Uwagi { get; set; }
 
     }
 }
