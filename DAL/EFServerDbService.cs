@@ -33,29 +33,27 @@ namespace kolEF.DAL
                 IdPracownikk = 1
             };
 
-            _context.Zamowienie.Add(NoweZam);
-
             List <WyrobDTO> wyroby = new List<WyrobDTO>(request.Wyroby);
 
             foreach(WyrobDTO w in wyroby){
 
-                var a = _context.WyrobCukierniczy.Where(x => x.Nazwa == w.Wyrob).FirstOrDefault();
+                var a = _context.WyrobCukierniczy.FirstOrDefault(x => x.Nazwa == w.Wyrob);
                 if (a == null)
                 {
                     return null;
                 }
                 else
                 {
-                    var order2 = _context.ZamowienieWyrobCukierniczy.Add(new ZamowienieWyrobCukierniczy
+                    NoweZam.ZamowienieWyrobCukierniczy.Add(new ZamowienieWyrobCukierniczy
                     {
                         IdWyrobuCukierniczego = a.IdWyrobuCukierniczego,
-                        IdZamowienia = NoweZam.IdZamowienia,
                         Ilosc = w.Ilosc,
                         Uwagi = w.Uwagi
                     });
                 }
             }
 
+            _context.Zamowienie.Add(NoweZam);
             _context.SaveChanges();
 
                 var res = new AddOrderResponse
