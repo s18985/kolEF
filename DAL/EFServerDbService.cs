@@ -21,43 +21,50 @@ namespace kolEF.DAL
 
         public AddOrderResponse AddOrder(int id, AddOrderRequest request)
         {
-           var wyrob = _context.WyrobCukierniczy.Where(x => x.Nazwa == request.Wyrob.Wyrob).FirstOrDefault();
+            int maxIdZam = _context.Zamowienie.Max(x => x.IdZamowienia);
 
-            if (wyrob == null)
+            var NoweZam = new Zamowienie
             {
-                return null;
+                IdZamowienia = (maxIdZam + 1),
+                DataPrzyjecia = request.DataPrzyjecia,
+                DataRealizacji = request.DataRealizacji,
+                Uwagi = request.Uwagi,
+                IdKlientt = id,
+                IdPracownikk = 1
+            };
+
+            _context.Zamowienie.Add(NoweZam);
+
+            List <WyrobDTO> wyroby = new List<WyrobDTO>(request.Wyroby);
+
+            foreach(WyrobDTO w in wyroby){
+
+                var a = _context.WyrobCukierniczy.Where(x => x.Nazwa == w.Wyrob).FirstOrDefault();
+                if (a == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var order2 = _context.ZamowienieWyrobCukierniczy.Add(new ZamowienieWyrobCukierniczy
+                    {
+                        IdWyrobuCukierniczego = a.IdWyrobuCukierniczego,
+                        IdZamowienia = NoweZam.IdZamowienia,
+                        Ilosc = w.Ilosc,
+                        Uwagi = w.Uwagi
+                    });
+                }
             }
-            else
-            {
-                var order = new Zamowienie
-                {
-                    DataPrzyjecia = request.DataPrzyjecia,
-                    DataRealizacji = request.DataRealizacji,
-                    Uwagi = request.Uwagi,
-                    IdKlientt = id,
-                    IdPracownikk = 1
-                };
 
-                var order2 = _context.ZamowienieWyrobCukierniczy.Add(new ZamowienieWyrobCukierniczy
-                {
-                    IdWyrobuCukierniczego = wyrob.IdWyrobuCukierniczego,
-                    Zamowienie = order,
-                    Ilosc = request.Wyrob.Ilosc,
-                    Uwagi = request.Wyrob.Uwagi
-
-                });
+            _context.SaveChanges();
 
                 var res = new AddOrderResponse
                 {
-                    Zamowienie = order,
-                    NazwaWyrobu = wyrob.Nazwa,
-                    Ilosc = request.Wyrob.Ilosc,
-                    Uwagi = request.Wyrob.Uwagi
-
+                    Zamowienie = NoweZam
                 };
 
                 return res;
-            }
+            
         }
 
         public List<Zamowienie> GetOrders(string nazwisko)

@@ -22,9 +22,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Klientt", b =>
                 {
                     b.Property<int>("IdKlientt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Imie")
                         .IsRequired()
@@ -45,9 +43,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Pracownikk", b =>
                 {
                     b.Property<int>("IdPracownikk")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Imie")
                         .IsRequired()
@@ -68,9 +64,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.WyrobCukierniczy", b =>
                 {
                     b.Property<int>("IdWyrobuCukierniczego")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<float>("CenaZaSzt")
                         .HasColumnType("real");
@@ -94,9 +88,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Zamowienie", b =>
                 {
                     b.Property<int>("IdZamowienia")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataPrzyjecia")
                         .HasColumnType("datetime2");

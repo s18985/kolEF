@@ -11,8 +11,7 @@ namespace kolEF.Migrations
                 name: "Klientt",
                 columns: table => new
                 {
-                    IdKlientt = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdKlientt = table.Column<int>(nullable: false),
                     Imie = table.Column<string>(maxLength: 50, nullable: false),
                     Nazwisko = table.Column<string>(maxLength: 60, nullable: false)
                 },
@@ -25,8 +24,7 @@ namespace kolEF.Migrations
                 name: "Pracownikk",
                 columns: table => new
                 {
-                    IdPracownikk = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdPracownikk = table.Column<int>(nullable: false),
                     Imie = table.Column<string>(maxLength: 50, nullable: false),
                     Nazwisko = table.Column<string>(maxLength: 60, nullable: false)
                 },
@@ -39,8 +37,7 @@ namespace kolEF.Migrations
                 name: "WyrobCukierniczy",
                 columns: table => new
                 {
-                    IdWyrobuCukierniczego = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdWyrobuCukierniczego = table.Column<int>(nullable: false),
                     Nazwa = table.Column<string>(maxLength: 200, nullable: false),
                     CenaZaSzt = table.Column<float>(nullable: false),
                     Typ = table.Column<string>(maxLength: 40, nullable: false)
@@ -54,11 +51,10 @@ namespace kolEF.Migrations
                 name: "Zamowienie",
                 columns: table => new
                 {
-                    IdZamowienia = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdZamowienia = table.Column<int>(nullable: false),
                     DataPrzyjecia = table.Column<DateTime>(nullable: false),
-                    DataRealizacji = table.Column<DateTime>(nullable: false),
-                    Uwagi = table.Column<string>(nullable: true),
+                    DataRealizacji = table.Column<DateTime>(nullable: true),
+                    Uwagi = table.Column<string>(maxLength: 300, nullable: true),
                     IdKlientt = table.Column<int>(nullable: false),
                     IdPracownikk = table.Column<int>(nullable: false)
                 },

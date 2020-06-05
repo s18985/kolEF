@@ -10,7 +10,7 @@ using kolEF.Models;
 namespace kolEF.Migrations
 {
     [DbContext(typeof(CodeFirstContext))]
-    [Migration("20200603174741_AddedTables")]
+    [Migration("20200605184725_AddedTables")]
     partial class AddedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Klientt", b =>
                 {
                     b.Property<int>("IdKlientt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Imie")
                         .IsRequired()
@@ -47,9 +45,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Pracownikk", b =>
                 {
                     b.Property<int>("IdPracownikk")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Imie")
                         .IsRequired()
@@ -70,9 +66,7 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.WyrobCukierniczy", b =>
                 {
                     b.Property<int>("IdWyrobuCukierniczego")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<float>("CenaZaSzt")
                         .HasColumnType("real");
@@ -96,14 +90,12 @@ namespace kolEF.Migrations
             modelBuilder.Entity("kolEF.Models.Zamowienie", b =>
                 {
                     b.Property<int>("IdZamowienia")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataPrzyjecia")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataRealizacji")
+                    b.Property<DateTime?>("DataRealizacji")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdKlientt")
@@ -113,7 +105,8 @@ namespace kolEF.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Uwagi")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
 
                     b.HasKey("IdZamowienia")
                         .HasName("Zamowienie_PK");

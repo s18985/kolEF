@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace kolEF.DTOs.Requests
 {
-    public class Wyroby
+    public class WyrobDTO
     {
         [Required]
         public string Wyrob { get; set; }

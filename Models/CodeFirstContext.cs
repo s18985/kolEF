@@ -26,6 +26,7 @@ namespace kolEF.Models
             {
                 entity.HasKey(e => e.IdKlientt).HasName("Klientt_PK");
 
+                entity.Property(e => e.IdKlientt).ValueGeneratedNever();
                 entity.Property(e => e.Imie).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Nazwisko).HasMaxLength(60).IsRequired();
 
@@ -35,6 +36,7 @@ namespace kolEF.Models
             {
                 entity.HasKey(e => e.IdPracownikk).HasName("Pracownikk_PK");
 
+                entity.Property(e => e.IdPracownikk).ValueGeneratedNever();
                 entity.Property(e => e.Imie).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Nazwisko).HasMaxLength(60).IsRequired();
 
@@ -44,6 +46,7 @@ namespace kolEF.Models
             {
                 entity.HasKey(e => e.IdZamowienia).HasName("Zamowienie_PK");
 
+                entity.Property(e => e.IdZamowienia).ValueGeneratedNever();
                 entity.Property(e => e.DataPrzyjecia).IsRequired();
                 entity.Property(e => e.Uwagi).HasMaxLength(300);
 
@@ -65,6 +68,7 @@ namespace kolEF.Models
             {
                 entity.HasKey(e => e.IdWyrobuCukierniczego).HasName("WyrobCukierniczy_PK");
 
+                entity.Property(e => e.IdWyrobuCukierniczego).ValueGeneratedNever();
                 entity.Property(e => e.Nazwa).HasMaxLength(200).IsRequired();
                 entity.Property(e => e.CenaZaSzt).IsRequired();
                 entity.Property(e => e.Typ).HasMaxLength(40).IsRequired();

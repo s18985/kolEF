@@ -14,7 +14,7 @@ namespace kolEF.DTOs.Requests
         public string Uwagi { get; set; }
 
         [Required]
-        public Wyroby Wyrob { get; set; }
+        public List<WyrobDTO> Wyroby { get; set; }
 
 
 
